@@ -1,4 +1,4 @@
-# rk-explorer-
+# rk-explorer
 %Stability analysis and visualization tools for Runge–Kutta methods using Butcher tableaux.
 # Runge–Kutta Stability Explorer
 
