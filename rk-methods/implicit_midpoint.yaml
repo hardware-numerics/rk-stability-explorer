@@ -1,0 +1,9 @@
+name: Implicit Midpoint (symplectic)
+type: rk
+
+A:
+  - ["1/2"]
+
+b: [1]
+
+c: ["1/2"]

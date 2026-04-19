@@ -1,0 +1,18 @@
+name: ARS(2,2,2) IMEX
+type: imex
+
+params:
+  gamma: 0.2928932188134524   # = 1 - 1/sqrt(2)
+
+A_explicit:
+  - [0, 0]
+  - [1-gamma, 0]
+
+A_implicit:
+  - [gamma, 0]
+  - [0, gamma]
+
+b_explicit: [1-gamma, gamma]
+b_implicit: [1-gamma, gamma]
+
+c: auto

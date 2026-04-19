@@ -1,0 +1,10 @@
+name: Explicit Midpoint
+type: rk
+
+A:
+  - [0, 0]
+  - ["1/2", 0]
+
+b: [0, 1]
+
+c: [0, "1/2"]

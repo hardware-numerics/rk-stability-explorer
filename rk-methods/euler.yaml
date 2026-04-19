@@ -1,0 +1,8 @@
+name: Explicit Euler
+type: rk
+A:
+  - [0]
+
+b: [1]
+
+c: [0]
