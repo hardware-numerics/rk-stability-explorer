@@ -1,4 +1,4 @@
-# rk-explorer
+# rk-stability-explorer
 %Stability analysis and visualization tools for Runge–Kutta methods using Butcher tableaux.
 # Runge–Kutta Stability Explorer
 
@@ -86,15 +86,15 @@ which is exactly what you want when things start breaking.
 ## 🚀 Quick start
 
 ```bash id="91dks2"
-git clone https://github.com/<your-username>/rk-stability-explorer
+git clone https://github.com/hardware-numerics/rk-stability-explorer
 cd rk-stability-explorer
 ```
 
 Then open:
 
 * `notebooks/stability_demo.ipynb` — interactive walkthrough
-* `src/` — core logic
-* `data/` — method definitions
+* `rk/` — core logic
+* `methods/` — method definitions
 
 ---
 
