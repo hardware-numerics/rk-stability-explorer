@@ -1,6 +1,9 @@
 # rk-stability-explorer
-%Stability analysis and visualization tools for Runge–Kutta methods using Butcher tableaux.
-# Runge–Kutta Stability Explorer
+Stability analysis and visualization tools for Runge–Kutta methods using Butcher's tableux
+
+![RK stability plot](examples/DemoRK.png) 
+
+Top row: stability regions growing left → right.Translation: larger timesteps, fewer regrets.
 
 Runge–Kutta methods are the brightest gems of numerical analysis —
 but picking one blindly is a great way to end up in numerical hell.
@@ -11,7 +14,6 @@ So instead of guessing:
 
 This repo is a small playground for answering exactly that.
 
-![RK stability plot](examples/DemoRK.png)
 ---
 
 ## 🔥 What’s inside
@@ -59,17 +61,6 @@ A curated mix of methods — from well-behaved classics to more… opinionated s
 * SDIRK (for those who like compromises)
 * PseudoSymplectic (a real diamond :))
 
-Some of these behave beautifully.
-Some don’t. That’s the point.
-
----
-
-## 📈 Stability regions
-
-*(insert your figure here)*
-
-Top row: stability regions growing left → right.
-Translation: larger timesteps, fewer regrets.
 
 ---
 
@@ -100,9 +91,9 @@ cd rk-stability-explorer
 
 Then open:
 
-* `notebooks/stability_demo.ipynb` — interactive walkthrough
-* `rk/` — core logic
-* `methods/` — method definitions
+* `notebooks/rk-basic-tutorial.ipynb` — interactive walkthrough
+* `rk_stability_explorer/` — core logic
+* `rk_stability_explorer/methods/` — method definitions
 
 ---
 
