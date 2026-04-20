@@ -11,6 +11,7 @@ So instead of guessing:
 
 This repo is a small playground for answering exactly that.
 
+![RK stability plot](examples/DemoRK.png)
 ---
 
 ## 🔥 What’s inside
