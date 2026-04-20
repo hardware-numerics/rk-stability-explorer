@@ -21,9 +21,16 @@ A minimal (and intentionally lightweight) setup to:
 * plug in **arbitrary Butcher tableaux**
 * compare schemes without committing to a full solver stack
 
-No frameworks. No magic. Just the part that actually matters.
-
 ---
+## Installation
+
+From GitHub:
+
+pip install git+https://github.com/hardware-numerics/rk-stability-explorer.git
+
+Specific version:
+
+pip install git+https://github.com/hardware-numerics/rk-stability-explorer.git@v0.1.0
 
 ## ⚔️ Choose your fighter
 
@@ -49,7 +56,7 @@ A curated mix of methods — from well-behaved classics to more… opinionated s
 * SSP (for when monotonicity matters)
 * Williamson low-storage (when memory is tight)
 * SDIRK (for those who like compromises)
-* RK–Chebyshev (pushing stability slightly beyond the bounds of decency)
+* PseudoSymplectic (a real diamond :))
 
 Some of these behave beautifully.
 Some don’t. That’s the point.
