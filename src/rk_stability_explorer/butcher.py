@@ -1,11 +1,3 @@
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
-"""
-Created on Sun Apr 19 00:17:07 2026
-
-@author: hardware-numerics
-"""
-
 import yaml
 import numpy as np
 from fractions import Fraction

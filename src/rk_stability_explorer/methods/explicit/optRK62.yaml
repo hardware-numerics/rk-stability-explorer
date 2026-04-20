@@ -1,4 +1,4 @@
-name: Optimized RK(6,2) extended real stability
+name: Optimized RK(6,2)
 type: rk
 
 A:

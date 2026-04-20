@@ -1,0 +1,32 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "rk_stability_explorer"
+version = "0.1.0"
+description = "Explore stability regions of Runge-Kutta methods"
+authors = [
+    { name="Your Name", email="your@email.com" }
+]
+readme = "README.md"
+requires-python = ">=3.9"
+
+dependencies = [
+    "numpy",
+    "matplotlib",
+    "pyyaml"
+]
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+rk_stability_explorer = ["methods/**/*.yaml"]
+
+[project.scripts]
+rk-stability = "rk_stability_explorer.cli:main"
+
