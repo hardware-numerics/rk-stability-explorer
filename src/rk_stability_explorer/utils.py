@@ -44,6 +44,17 @@ def list_methods():
     return sorted(names)
 
 
+def list_methods_grouped():
+    base = files("rk_stability_explorer.methods")
+    result = {}
+
+    for subdir in base.iterdir():
+        if subdir.is_dir():
+            result[subdir.name] = [
+                f.stem for f in subdir.iterdir() if f.name.endswith(".yaml")
+            ]
+
+    return result
 
 
 from fractions import Fraction
