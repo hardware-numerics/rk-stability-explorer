@@ -6,9 +6,9 @@ import rk_stability_explorer as rk
 
 
 methods = [
-    "euler", "heun", "rk4", "dopri5",
-    "optRK62", "radauIIA", "kvarno",
-    "williamson", "ssprk33", "ps36"
+    "euler", "rk4", "dopri5",
+    "optRK62", "ps36", "williamson",
+    "ssprk33", "kvarno", "radauIIA"
 ]
 
 
@@ -18,7 +18,7 @@ X, Y = rk.make_grid(n=200)
 Z = X + 1j * Y
 
 results = rk.compute_results(methods, X, Y, Z)
-fig = rk.rkplot_multiple(results, cols=5)
+fig = rk.rkplot_multiple(results, cols=3)
 
-fig.savefig("DemoRK.png",  dpi=200, bbox_inches = 'tight', pad_inches = 0)
+fig.savefig("DemoRK2.png",  dpi=200, bbox_inches = 'tight', pad_inches = 0)
 plt.show()

@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 
-def make_grid(xmin=-8, xmax=2, ymin=-6, ymax=6, n=200):
+def make_grid(xmin=-8, xmax=2, ymin=-5.5, ymax=5.5, n=200):
     x = np.linspace(xmin, xmax, n)
     y = np.linspace(ymin, ymax, n)
     return np.meshgrid(x, y)
@@ -21,7 +21,7 @@ def rkplot_multiple(method_results, cols=2):
     fig, axes = plt.subplots(
         rows,
         cols,
-        figsize=(4.0 * cols, 4 * rows),
+        figsize=(4.0 * cols, 4.2 * rows),
         sharex=True,
         sharey=True
     )
@@ -34,7 +34,7 @@ def rkplot_multiple(method_results, cols=2):
 
         ax.contourf(X, Y, np.abs(R), levels=levels, cmap="twilight")
         ax.contour(X, Y, np.abs(R), levels=[1], colors="red", linewidths=2)
-        ax.set_title(title)
+        ax.set_title(title, fontsize=16)
 
     for ax in axes[n:]:
         ax.remove()

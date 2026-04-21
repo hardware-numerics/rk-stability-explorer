@@ -57,20 +57,65 @@ def list_methods_grouped():
     return result
 
 
+#-------detect where precision is needed----
 from fractions import Fraction
 
-def format_number(x, tol=1e-10):
+def detect_method_type(method):
+    b = method["b"]
+    A = method["A"]
+    s = len(b)
+
+    max_den = 1
+
+    for row in A:
+        for x in row:
+            if isinstance(x, Fraction):
+                max_den = max(max_den, x.denominator)
+
+    if s == 4:
+        return "RK4"
+
+    if s >= 10 or max_den > 1000:
+        return "DOP_LIKE"
+
+    return "RK_SMALL"
+
+def format_number(x, method_type="AUTO"):
     if isinstance(x, str):
         return x
 
-    frac = Fraction(x).limit_denominator(100)
-    if abs(float(frac) - x) < tol:
-        if frac.denominator == 1:
-            return f"{frac.numerator}"
-        return f"{frac.numerator}/{frac.denominator}"
+    frac = Fraction(x) if not isinstance(x, Fraction) else x
 
-    return f"{x:.3g}"
+    if method_type == "DOP_LIKE":
+        # точный режим
+        f = frac
+    else:
+        # красивый режим
+        f = frac.limit_denominator(20)
 
+    if f.denominator == 1:
+        return str(f.numerator)
+
+    return f"{f.numerator}/{f.denominator}"
+
+#def format_number(x, tol=1e-10):
+#    if isinstance(x, str):
+#        return x#
+#
+#    frac = Fraction(x).limit_denominator(1000)
+#    #frac =Fraction(str(x))
+#    if abs(float(frac) - x) < tol:
+#        if frac.denominator == 1:
+#            return f"{frac.numerator}"
+#        return f"{frac.numerator}/{frac.denominator}"
+#
+#    return f"{x:.3g}"
+
+#def format_number(x):
+#    if isinstance(x, Fraction):
+#        return f"{x.numerator}/{x.denominator}" if x.denominator != 1 else str(x.numerator)
+
+    return str(x)
 
 def print_butcher_table(method):
     from .utils import load_builtin
@@ -84,17 +129,17 @@ def print_butcher_table(method):
     c = method["c"]
 
     s = len(b)
-
-    print(f"\nMethod: {name}\n")
+    method_type = detect_method_type(method)
+    print(f"\nMethod: {name}\n", method_type)
 
     rows = []
     for i in range(s):
-        row = [format_number(c[i])] + [
-            format_number(A[i][j]) for j in range(s)
+        row = [format_number(c[i], method_type)] + [
+            format_number(A[i][j], method_type) for j in range(s)
         ]
         rows.append(row)
 
-    b_row = [""] + [format_number(x) for x in b]
+    b_row = [""] + [format_number(x, method_type) for x in b]
 
     # ширины колонок
     cols = list(zip(*rows, b_row))
