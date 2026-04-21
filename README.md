@@ -39,9 +39,11 @@ Specific version:
 
 ## Usage example
 
-```bash
-rk-stability list 
+
+```
+rk-stability list
 rk-stability show rk4
+
 Method: Classical RK4
 
   0 │   0    0    0    0
@@ -50,7 +52,13 @@ Method: Classical RK4
   1 │   0    0    1    0
 ──────────────────────────────
     │ 1/6  1/3  1/3  1/6
-'''
+
+
+Plotting from CLI
+
+rk-stability plot rk4 heun
+rk-stability plot rk4 heun radauIIA --cols 3 --save rktest.png
+```
 
 
 ## Plotting from CLI
@@ -108,18 +116,12 @@ which is exactly what you want when things start breaking.
 
 ---
 
-## 🚀 Quick start
-
-```bash id="91dks2"
-git clone https://github.com/hardware-numerics/rk-stability-explorer
-cd rk-stability-explorer
-```
-
-Then open:
+## Tutorials&Demos
 
 * `notebooks/rk-basic-tutorial.ipynb` — interactive walkthrough
+* `notebooks/demo.py` — demo
 * `rk_stability_explorer/` — core logic
-* `rk_stability_explorer/methods/` — method definitions
+* `rk_stability_explorer/methods/` — methods are here
 
 ---
 
