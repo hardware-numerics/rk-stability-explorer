@@ -29,11 +29,35 @@ A minimal (and intentionally lightweight) setup to:
 
 From GitHub:
 
-pip install git+https://github.com/hardware-numerics/rk-stability-explorer.git
+<pre> ```pip install git+https://github.com/hardware-numerics/rk-stability-explorer.git``` </pre>
 
 Specific version:
 
-pip install git+https://github.com/hardware-numerics/rk-stability-explorer.git@v0.1.0
+<pre> ```pip install git+https://github.com/hardware-numerics/rk-stability-explorer.git@v0.1.0``` </pre>
+
+
+
+## Usage example
+
+```bash
+rk-stability list 
+rk-stability show rk4
+Method: Classical RK4
+
+  0 │   0    0    0    0
+1/2 │ 1/2    0    0    0
+1/2 │   0  1/2    0    0
+  1 │   0    0    1    0
+──────────────────────────────
+    │ 1/6  1/3  1/3  1/6
+
+
+Plotting from CLI
+
+rk-stability plot rk4 heun
+rk-stability plot rk4 heun radauIIA --cols 3 --save rktest.png
+
+
 
 ## ⚔️ Choose your fighter
 
