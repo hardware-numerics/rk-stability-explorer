@@ -54,18 +54,15 @@ Method: Classical RK4
     │ 1/6  1/3  1/3  1/6
 
 
-Plotting from CLI
-
-rk-stability plot rk4 heun
-rk-stability plot rk4 heun radauIIA --cols 3 --save rktest.png
 ```
 
 
 ## Plotting from CLI
 
-<pre>rk-stability plot rk4 heun </pre>
-
-<pre>rk-stability plot rk4 heun radauIIA --cols 3 --save rktest.png</pre>
+```
+rk-stability plot rk4 heun
+rk-stability plot rk4 heun radauIIA --cols 3 --save rktest.png
+```
 
 
 
