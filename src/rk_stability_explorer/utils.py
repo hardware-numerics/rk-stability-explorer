@@ -80,23 +80,78 @@ def detect_method_type(method):
 
     return "RK_SMALL"
 
+#def format_number(x, method_type="AUTO"):
+#    if isinstance(x, str):
+#        return x
+#
+#    frac = Fraction(x) if not isinstance(x, Fraction) else x
+#
+#    if method_type == "DOP_LIKE":
+#        # точный режим
+#        f = frac
+#    else:
+#        # красивый режим
+#        f = frac.limit_denominator(20)
+#
+#    if f.denominator == 1:
+#        return str(f.numerator)
+#
+#    return f"{f.numerator}/{f.denominator}"
+
+
+
+#def format_number(x, method_type="AUTO"):
+#    # строки оставляем как есть
+#    if isinstance(x, str):
+#        return x
+#
+#    # --- CASE 1: Fraction (точные методы) ---
+#    if isinstance(x, Fraction):
+#        if method_type == "DOP_LIKE":
+#            f = x  # без упрощения
+#        else:
+#            f = x.limit_denominator(20)
+#
+#        if f.denominator == 1:
+#            return str(f.numerator)
+#
+#        return f"{f.numerator}/{f.denominator}"
+#
+#    # --- CASE 2: float (численные методы) ---
+#    if isinstance(x, float):
+#        # аккуратный вывод без мусора
+#        return f"{x:.6g}"
+#
+#    # fallback
+#    return str(x)
+
 def format_number(x, method_type="AUTO"):
     if isinstance(x, str):
         return x
 
-    frac = Fraction(x) if not isinstance(x, Fraction) else x
+    # --- Fraction ---
+    if isinstance(x, Fraction):
+        if method_type == "DOP_LIKE":
+            f = x
+        else:
+            f = x.limit_denominator(20)
 
-    if method_type == "DOP_LIKE":
-        # точный режим
-        f = frac
-    else:
-        # красивый режим
-        f = frac.limit_denominator(20)
+        if f.denominator == 1:
+            return str(f.numerator)
 
-    if f.denominator == 1:
-        return str(f.numerator)
+        return f"{f.numerator}/{f.denominator}"
 
-    return f"{f.numerator}/{f.denominator}"
+    # --- float ---
+    if isinstance(x, float):
+        # попытка распознать простую дробь
+        frac = Fraction(x).limit_denominator(10)
+        if abs(float(frac) - x) < 1e-10:
+            return f"{frac.numerator}/{frac.denominator}"
+
+        # иначе нормальный float вывод
+        return f"{x:.15g}"
+
+    return str(x)
 
 #def format_number(x, tol=1e-10):
 #    if isinstance(x, str):

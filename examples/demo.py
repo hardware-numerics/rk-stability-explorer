@@ -18,7 +18,7 @@ X, Y = rk.make_grid(n=200)
 Z = X + 1j * Y
 
 results = rk.compute_results(methods, X, Y, Z)
-fig = rk.rkplot_multiple(results, cols=3)
+fig = rk.rkplot_multiple(results, cols=3, cmap = "twilight")
 
 fig.savefig("DemoRK2.png",  dpi=200, bbox_inches = 'tight', pad_inches = 0)
 plt.show()

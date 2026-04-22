@@ -1,5 +1,5 @@
 from .utils import load_builtin, list_methods, list_methods_grouped, print_butcher_table, detect_method_type
-from .analysis import compute_results
+from .analysis import compute_results, compile_method
 from .rkplot_multiple import make_grid, rkplot_multiple
 
 #from .utils import load_builtin, describe_methods

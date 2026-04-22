@@ -11,7 +11,7 @@ def make_grid(xmin=-8, xmax=2, ymin=-5.5, ymax=5.5, n=200):
 
     
 
-def rkplot_multiple(method_results, cols=2):
+def rkplot_multiple(method_results, cols=2, cmap = "twilight"):
     import matplotlib.pyplot as plt
     import numpy as np
 
@@ -32,7 +32,7 @@ def rkplot_multiple(method_results, cols=2):
         levels = np.linspace(0, 2, 150)
         stable = np.abs(R) <= 1
 
-        ax.contourf(X, Y, np.abs(R), levels=levels, cmap="twilight")
+        ax.contourf(X, Y, np.abs(R), levels=levels, cmap=cmap)
         ax.contour(X, Y, np.abs(R), levels=[1], colors="red", linewidths=2)
         ax.set_title(title, fontsize=16)
 

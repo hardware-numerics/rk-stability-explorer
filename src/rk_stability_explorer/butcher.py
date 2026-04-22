@@ -3,9 +3,38 @@ import numpy as np
 from fractions import Fraction
 
 # ---------- parser ----------
+#def _parse(x, context):
+#    if isinstance(x, (int, float)):
+#        return float(x)
+#
+#    if isinstance(x, str):
+#        x = x.strip()
+#
+#        safe_dict = {
+#            "sqrt": np.sqrt,
+#            "pi": np.pi,
+#        }
+#        safe_dict.update(context)
+#
+#        # fraction fast-path
+#        if "/" in x and all(c in "0123456789./- " for c in x):
+#            try:
+#                #return float(Fraction(x))
+#                return Fraction(x)
+#            except:
+#                pass
+#
+#        return float(eval(x, {"__builtins__": {}}, safe_dict))
+#
+#    raise TypeError(f"Unsupported type: {type(x)}")
+#
+
 def _parse(x, context):
-    if isinstance(x, (int, float)):
-        return float(x)
+    if isinstance(x, int):
+        return Fraction(x)
+
+    if isinstance(x, float):
+        return x   # ✔️ НЕ трогаем
 
     if isinstance(x, str):
         x = x.strip()
@@ -16,17 +45,14 @@ def _parse(x, context):
         }
         safe_dict.update(context)
 
-        # fraction fast-path
+        # только явные дроби → Fraction
         if "/" in x and all(c in "0123456789./- " for c in x):
-            try:
-                return float(Fraction(x))
-            except:
-                pass
+            return Fraction(x)
 
+        # всё остальное → float
         return float(eval(x, {"__builtins__": {}}, safe_dict))
 
     raise TypeError(f"Unsupported type: {type(x)}")
-
 
 def _parse_matrix(M, ctx):
     return np.array([[_parse(x, ctx) for x in row] for row in M])
@@ -57,10 +83,17 @@ def load_method(path):
         method["b"] = b
 
         # c handling
-        if data.get("c", None) == "auto":
-            method["c"] = A.sum(axis=1)
+        c_data = data.get("c", None)
+
+        if c_data == "auto" or c_data is None:
+            method["c"] = np.array([sum(row) for row in A])
         else:
-            method["c"] = _parse_vector(data["c"], params)
+            method["c"] = _parse_vector(c_data, params)
+    
+        #if data.get("c", None) == "auto":
+        #    method["c"] = A.sum(axis=1)
+        #else:
+        #    method["c"] = _parse_vector(data["c"], params)
 
     # ---- embedded ----
     if "b_alt" in data:

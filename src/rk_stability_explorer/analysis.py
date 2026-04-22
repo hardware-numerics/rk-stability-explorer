@@ -1,6 +1,14 @@
 from .stability import stability_function
 from .utils import load_builtin  # 
+import numpy as np
 
+def compile_method(method):
+    return {
+        "A": np.array(method["A"], dtype=float),
+        "b": np.array(method["b"], dtype=float),
+        "c": np.array(method["c"], dtype=float),
+        "name": method["name"]
+    }
 
 def compute_results(methods, X, Y, Z):
     # 1. загрузить методы (если строки)
@@ -9,6 +17,7 @@ def compute_results(methods, X, Y, Z):
     for m in methods:
         if isinstance(m, str):
             m = load_builtin(m)
+        m = compile_method(m)   # make it float
         loaded_methods.append(m)
 
     # 2. считать результаты
