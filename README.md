@@ -29,11 +29,11 @@ A minimal (and intentionally lightweight) setup to:
 
 From GitHub:
 
-<pre> pip install git+https://github.com/hardware-numerics/rk-stability-explorer.git</pre>
+<pre> pip install --upgrade --no-cache-dir  git+https://github.com/hardware-numerics/rk-stability-explorer.git</pre>
 
 Specific version:
 
-<pre> pip install git+https://github.com/hardware-numerics/rk-stability-explorer.git@v0.1.0 </pre>
+<pre> pip install --upgrade --no-cache-dir  git+https://github.com/hardware-numerics/rk-stability-explorer.git@v0.1.0 </pre>
 
 
 
