@@ -20,5 +20,5 @@ Z = X + 1j * Y
 results = rk.compute_results(methods, X, Y, Z)
 fig = rk.rkplot_multiple(results, cols=5, cmap = "twilight")
 
-fig.savefig("assets/DemoRK.png",  dpi=200, bbox_inches = 'tight', pad_inches = 0)
+fig.savefig("DemoRK.png",  dpi=200, bbox_inches = 'tight', pad_inches = 0)
 plt.show()

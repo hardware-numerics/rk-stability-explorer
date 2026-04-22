@@ -21,21 +21,10 @@ def compile_method(method):
         "name": method["name"]
     }
     
-   # if method["c"] == method["c"] is None:
-   #     A = method["A"]
-   #     method["c"] = np.array([sum(row) for row in A])
-    #else:
-    #    method["c"] = _parse_vector(c_data, params)
-
-    #return {
-    #    "A": np.array(method["A"], dtype=float),
-    #    "b": np.array(method["b"], dtype=float),
-    #    "c": np.array(method["c"], dtype=float),
-    #    "name": method["name"]
-    #}
+   
 
 def compute_results(methods, X, Y, Z):
-    # 1. загрузить методы (если строки)
+    # 1. load methods (strings)
     loaded_methods = []
 
     for m in methods:
@@ -44,7 +33,7 @@ def compute_results(methods, X, Y, Z):
         m = compile_method(m)   # make it float
         loaded_methods.append(m)
 
-    # 2. считать результаты
+    # 2. compute results
     results = []
 
     for method in loaded_methods:
