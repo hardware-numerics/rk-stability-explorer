@@ -5,12 +5,7 @@ import rk_stability_explorer as rk
 #print(rk_stability_explorer.__file__)
 
 
-#methods = [
-#    "euler", "rk4", "dopri5",
-#    "optRK62", "ps36", "williamson",
-#    "ssprk33", "kvarno", "radauIIA"
-#]
-
+# DemoRK
 methods = [
     "euler", "heun", "rk4", "dopri5",
     "optRK62", "radauIIA", "kvarno", "williamson",
