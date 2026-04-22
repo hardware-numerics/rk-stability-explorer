@@ -115,7 +115,7 @@ If you interrupt (`Ctrl+C`), you may see a `KeyboardInterrupt` message — this 
 
 ## 🖼 Example
 
-![cli print RK](examples/rktest.png)
+![cli print RK](assets/rktest.png)
 
 Top row: stability regions growing left → right.
 Translation: larger timesteps, fewer regrets.
