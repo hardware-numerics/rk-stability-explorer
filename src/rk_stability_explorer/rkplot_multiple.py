@@ -34,7 +34,7 @@ def rkplot_multiple(method_results, cols=2, cmap = "twilight"):
 
         ax.contourf(X, Y, np.abs(R), levels=levels, cmap=cmap)
         ax.contour(X, Y, np.abs(R), levels=[1], colors="red", linewidths=2)
-        ax.set_title(title, fontsize=16)
+        ax.set_title(title, fontsize=16,fontweight="bold")
 
     for ax in axes[n:]:
         ax.remove()

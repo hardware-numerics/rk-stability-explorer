@@ -2,32 +2,6 @@ import yaml
 import numpy as np
 from fractions import Fraction
 
-# ---------- parser ----------
-#def _parse(x, context):
-#    if isinstance(x, (int, float)):
-#        return float(x)
-#
-#    if isinstance(x, str):
-#        x = x.strip()
-#
-#        safe_dict = {
-#            "sqrt": np.sqrt,
-#            "pi": np.pi,
-#        }
-#        safe_dict.update(context)
-#
-#        # fraction fast-path
-#        if "/" in x and all(c in "0123456789./- " for c in x):
-#            try:
-#                #return float(Fraction(x))
-#                return Fraction(x)
-#            except:
-#                pass
-#
-#        return float(eval(x, {"__builtins__": {}}, safe_dict))
-#
-#    raise TypeError(f"Unsupported type: {type(x)}")
-#
 
 def _parse(x, context):
     if isinstance(x, int):
@@ -45,11 +19,11 @@ def _parse(x, context):
         }
         safe_dict.update(context)
 
-        # только явные дроби → Fraction
+        # only explicit fractions → Fraction
         if "/" in x and all(c in "0123456789./- " for c in x):
             return Fraction(x)
 
-        # всё остальное → float
+        # rest → float
         return float(eval(x, {"__builtins__": {}}, safe_dict))
 
     raise TypeError(f"Unsupported type: {type(x)}")
@@ -90,11 +64,7 @@ def load_method(path):
         else:
             method["c"] = _parse_vector(c_data, params)
     
-        #if data.get("c", None) == "auto":
-        #    method["c"] = A.sum(axis=1)
-        #else:
-        #    method["c"] = _parse_vector(data["c"], params)
-
+       
     # ---- embedded ----
     if "b_alt" in data:
         method["b_alt"] = _parse_vector(data["b_alt"], params)

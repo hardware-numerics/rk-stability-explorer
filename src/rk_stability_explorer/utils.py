@@ -56,7 +56,19 @@ def list_methods_grouped():
 
     return result
 
+def display_methods(data=None):
+    from IPython.display import display, Markdown
 
+    if data is None:
+        data = list_methods_grouped()
+
+    md = ""
+    for group, methods in data.items():
+        md += f"### {group}\n"
+        md += ", ".join(methods) + "\n\n"
+
+    display(Markdown(md))
+    
 #-------detect where precision is needed----
 from fractions import Fraction
 
@@ -80,50 +92,8 @@ def detect_method_type(method):
 
     return "RK_SMALL"
 
-#def format_number(x, method_type="AUTO"):
-#    if isinstance(x, str):
-#        return x
-#
-#    frac = Fraction(x) if not isinstance(x, Fraction) else x
-#
-#    if method_type == "DOP_LIKE":
-#        # точный режим
-#        f = frac
-#    else:
-#        # красивый режим
-#        f = frac.limit_denominator(20)
-#
-#    if f.denominator == 1:
-#        return str(f.numerator)
-#
-#    return f"{f.numerator}/{f.denominator}"
 
 
-
-#def format_number(x, method_type="AUTO"):
-#    # строки оставляем как есть
-#    if isinstance(x, str):
-#        return x
-#
-#    # --- CASE 1: Fraction (точные методы) ---
-#    if isinstance(x, Fraction):
-#        if method_type == "DOP_LIKE":
-#            f = x  # без упрощения
-#        else:
-#            f = x.limit_denominator(20)
-#
-#        if f.denominator == 1:
-#            return str(f.numerator)
-#
-#        return f"{f.numerator}/{f.denominator}"
-#
-#    # --- CASE 2: float (численные методы) ---
-#    if isinstance(x, float):
-#        # аккуратный вывод без мусора
-#        return f"{x:.6g}"
-#
-#    # fallback
-#    return str(x)
 
 def format_number(x, method_type="AUTO"):
     if isinstance(x, str):
@@ -153,24 +123,6 @@ def format_number(x, method_type="AUTO"):
 
     return str(x)
 
-#def format_number(x, tol=1e-10):
-#    if isinstance(x, str):
-#        return x#
-#
-#    frac = Fraction(x).limit_denominator(1000)
-#    #frac =Fraction(str(x))
-#    if abs(float(frac) - x) < tol:
-#        if frac.denominator == 1:
-#            return f"{frac.numerator}"
-#        return f"{frac.numerator}/{frac.denominator}"
-#
-#    return f"{x:.3g}"
-
-#def format_number(x):
-#    if isinstance(x, Fraction):
-#        return f"{x.numerator}/{x.denominator}" if x.denominator != 1 else str(x.numerator)
-
-    return str(x)
 
 def print_butcher_table(method):
     from .utils import load_builtin

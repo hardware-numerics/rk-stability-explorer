@@ -3,12 +3,36 @@ from .utils import load_builtin  #
 import numpy as np
 
 def compile_method(method):
+    A = np.array(method["A"], dtype=float)
+    b = np.array(method["b"], dtype=float)
+
+    c = method.get("c", None)
+
+    if c is None:
+        # fallback: row sums
+        c = np.sum(A, axis=1)
+    else:
+        c = np.array(c, dtype=float)
+
     return {
-        "A": np.array(method["A"], dtype=float),
-        "b": np.array(method["b"], dtype=float),
-        "c": np.array(method["c"], dtype=float),
+        "A": A,
+        "b": b,
+        "c": c,
         "name": method["name"]
     }
+    
+   # if method["c"] == method["c"] is None:
+   #     A = method["A"]
+   #     method["c"] = np.array([sum(row) for row in A])
+    #else:
+    #    method["c"] = _parse_vector(c_data, params)
+
+    #return {
+    #    "A": np.array(method["A"], dtype=float),
+    #    "b": np.array(method["b"], dtype=float),
+    #    "c": np.array(method["c"], dtype=float),
+    #    "name": method["name"]
+    #}
 
 def compute_results(methods, X, Y, Z):
     # 1. загрузить методы (если строки)

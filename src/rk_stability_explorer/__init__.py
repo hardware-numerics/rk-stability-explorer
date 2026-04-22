@@ -1,4 +1,4 @@
-from .utils import load_builtin, list_methods, list_methods_grouped, print_butcher_table, detect_method_type
+from .utils import load_builtin, list_methods, list_methods_grouped, print_butcher_table, detect_method_type, display_methods
 from .analysis import compute_results, compile_method
 from .rkplot_multiple import make_grid, rkplot_multiple
 
