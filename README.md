@@ -1,18 +1,27 @@
 # rk-stability-explorer
-Stability analysis and visualization tools for Runge–Kutta methods using Butcher's tableux
 
-![RK stability plot](examples/DemoRK.png) 
+Stability analysis and visualization tools for Runge–Kutta methods using Butcher tableaux.
 
-Top row: stability regions growing left → right.Translation: larger timesteps, fewer regrets.
+![RK stability plot](examples/DemoRK.png)
 
-Runge–Kutta methods are the brightest gems of numerical analysis —
-but picking one blindly is a great way to end up in numerical hell.
+Runge–Kutta methods are some of the brightest gems of numerical analysis —
+but picking one blindly is still a great way to end up in numerical hell.
 
-So instead of guessing:
+This repo is a small playground to answer a simple question:
 
 > *what does the stability region actually look like?*
 
-This repo is a small playground for answering exactly that.
+---
+
+## ⚡ 30-second demo
+
+```bash
+pip install --upgrade --no-cache-dir git+https://github.com/hardware-numerics/rk-stability-explorer.git
+
+rk-stability plot rk4 heun
+```
+
+This opens a stability plot comparing two classical methods.
 
 ---
 
@@ -25,46 +34,93 @@ A minimal (and intentionally lightweight) setup to:
 * compare schemes without committing to a full solver stack
 
 ---
-## Installation
+
+## 📦 Installation
 
 From GitHub:
 
-<pre> pip install --upgrade --no-cache-dir  git+https://github.com/hardware-numerics/rk-stability-explorer.git</pre>
+```bash
+pip install --upgrade --no-cache-dir git+https://github.com/hardware-numerics/rk-stability-explorer.git
+```
 
 Specific version:
 
-<pre> pip install --upgrade --no-cache-dir  git+https://github.com/hardware-numerics/rk-stability-explorer.git@v0.1.0 </pre>
-
-
-
-## Usage example
-
-
+```bash
+pip install --upgrade --no-cache-dir git+https://github.com/hardware-numerics/rk-stability-explorer.git@v0.1.0
 ```
+
+---
+
+## 🧪 Installation in virtual environment
+
+To use the package inside a virtual environment:
+
+```bash
+mkdir ~/apps
+mkdir ~/apps/myutil
+cd ~/apps/myutil
+virtualenv .env
+source .env/bin/activate
+pip install --upgrade --no-cache-dir git+https://github.com/hardware-numerics/rk-stability-explorer.git
+```
+
+---
+
+## 🚀 Quick usage
+
+List available methods:
+
+```bash
 rk-stability list
+```
+
+Show a method (Butcher tableau):
+
+```bash
 rk-stability show rk4
-
-Method: Classical RK4
-
-  0 │   0    0    0    0
-1/2 │ 1/2    0    0    0
-1/2 │   0  1/2    0    0
-  1 │   0    0    1    0
-──────────────────────────────
-    │ 1/6  1/3  1/3  1/6
-
-
 ```
 
+Plot stability regions:
 
-## Plotting from CLI
-
-```
+```bash
 rk-stability plot rk4 heun
-rk-stability plot rk4 heun radauIIA --cols 3 --save rktest.png
 ```
 
+Multiple methods:
 
+```bash
+rk-stability plot rk4 heun radauIIA --cols 3
+```
+
+Save to file:
+
+```bash
+rk-stability plot rk4 heun --save rktest.png
+```
+
+---
+
+## 📊 About plotting behavior (CLI)
+
+* By default, plots are shown interactively
+
+* The process waits until the plot window is closed
+
+* When using `--save`, the plot is briefly displayed (~1 second)
+  before being saved — just to indicate that something is happening
+
+If you interrupt (`Ctrl+C`), you may see a `KeyboardInterrupt` message — this is expected.
+
+---
+
+## 🖼 Example
+
+![cli print RK](examples/rktest.png)
+
+Top row: stability regions growing left → right.
+Translation: larger timesteps, fewer regrets.
+
+---
 
 ## ⚔️ Choose your fighter
 
@@ -90,12 +146,11 @@ A curated mix of methods — from well-behaved classics to more… opinionated s
 * SSP (for when monotonicity matters)
 * Williamson low-storage (when memory is tight)
 * SDIRK (for those who like compromises)
-* PseudoSymplectic (a real diamond :))
-
+* Pseudo-symplectic (a real diamond)
 
 ---
 
-## 🧪 What you can actually do here
+## 🧪 What you can do here
 
 * Visualize stability regions
 * Compare methods side by side
@@ -113,18 +168,18 @@ which is exactly what you want when things start breaking.
 
 ---
 
-## Tutorials&Demos
+## 📚 Tutorials & demos
 
 * `notebooks/rk-basic-tutorial.ipynb` — interactive walkthrough
-* `notebooks/demo.py` — demo
+* `notebooks/demo.py` — demo script
 * `rk_stability_explorer/` — core logic
-* `rk_stability_explorer/methods/` — methods are here
+* `rk_stability_explorer/methods/` — method definitions
 
 ---
 
 ## 🎓 Why this exists
 
-Originally put together for a course on advanced numerical methods.
+Originally developed for a course on advanced numerical methods.
 
 Because stability regions are too important to stay abstract —
 and too fun not to plot.
@@ -135,7 +190,7 @@ and too fun not to plot.
 
 If your favorite RK method is missing — add it.
 
-Or defend it.
-
-Both are equally welcome.
+The package is experimental, intentionally lightweight, and built for exploration.
+Students from *Advanced Numerical Methods for Physics and Medical Physics* (SoSe 2026, HHU)
+are especially welcome to contribute :)
 

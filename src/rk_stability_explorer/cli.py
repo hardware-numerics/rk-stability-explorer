@@ -4,7 +4,7 @@ from .utils import load_builtin
 from .analysis import compute_results
 from .rkplot_multiple import make_grid
 from .rkplot_multiple import rkplot_multiple
-from .utils import list_methods  # 
+from .utils import list_methods, list_methods_grouped   # 
 
 import matplotlib.pyplot as plt
 
@@ -30,13 +30,20 @@ def main():
     plot_parser.add_argument("--n", type=int, default=200)
     plot_parser.add_argument("--cols", type=int, default=3)
     plot_parser.add_argument("--save", type=str, default=None)
+    #plot_parser.add_argument("--hold", type=str, default=None)
 
     args = parser.parse_args()
 
     # ---- dispatch ----
     if args.command == "list":
-        for m in list_methods():
-            print(m)
+        data = list_methods_grouped()
+        max_len = max(len(group) for group in data)
+
+        for group, methods in data.items():
+            print(f"{group.ljust(max_len)} | {', '.join(methods)}")
+        #for m in list_methods_grouped():
+        #    print(m)
+        
 
     elif args.command == "show":
         from .utils import print_butcher_table
@@ -53,8 +60,11 @@ def main():
 
         if args.save:
             fig.savefig(args.save, dpi=200, bbox_inches="tight")
-
-        plt.show()
+            plt.show(block=False)
+            plt.pause(1)
+        else:    
+        #if args.hold:
+            plt.show()
 
     else:
         parser.print_help()
