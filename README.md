@@ -49,6 +49,11 @@ Specific version:
 pip install --upgrade --no-cache-dir git+https://github.com/hardware-numerics/rk-stability-explorer.git@v0.1.0
 ```
 
+```bash
+echo $PATH
+echo 'export PATH=$PATH:~/.local/bin' >> ~/.bashrc
+source ~/.bashrc
+```
 ---
 
 ## 🧪 Installation in virtual environment
